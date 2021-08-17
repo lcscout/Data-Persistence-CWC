@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	[System.Serializable]
 	public class HighscoreData {
-		public int _points;
-		public string _name;
+		public int points;
+		public string name;
 	}
 
 	public HighscoreData h_Data;
@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour {
 
 	public void SaveHighscore(int points) {
 		HighscoreData data = new HighscoreData();
-		data._points = points;
-		data._name = playerName;
+		data.points = points;
+		data.name = playerName;
 
 		string json = JsonUtility.ToJson(data);
 

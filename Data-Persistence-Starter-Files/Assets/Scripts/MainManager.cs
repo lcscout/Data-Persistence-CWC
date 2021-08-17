@@ -20,9 +20,9 @@ public class MainManager : MonoBehaviour {
 	private bool m_GameOver = false;
 
 	private void Awake() {
-		if (GameManager.Instance != null) {
+		if (GameManager.Instance != null && GameManager.Instance.h_Data.name != "") {
 			GameManager.HighscoreData data = GameManager.Instance.h_Data;
-			highscoreText.text = "Best Score: " + data._points.ToString() + " Name: " + data._name;
+			highscoreText.text = "Best Score: " + data.points.ToString() + " Name: " + data.name;
 			highscoreText.gameObject.SetActive(true);
 		}
 	}
@@ -57,10 +57,8 @@ public class MainManager : MonoBehaviour {
 			if (GameManager.Instance != null) GameManager.Instance.SaveHighscore(m_Points);
 
 			if (Input.GetKeyDown(KeyCode.Space)) {
+				if (GameManager.Instance != null) GameManager.Instance.LoadHighscore();
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-				if (GameManager.Instance != null && GameManager.Instance.h_Data != null)
-					if (m_Points > GameManager.Instance.h_Data._points)
-						GameManager.Instance.LoadHighscore();
 			}
 		}
 	}
